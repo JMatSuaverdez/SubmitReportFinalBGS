@@ -32,7 +32,7 @@
           <div class="input-group">
             <span class="input-group-btn">
               <span class="btn btn-default btn-file" style=" position: relative; overflow: hidden;">
-                Upload Image<input type="file" accept="image/*" id="imgInp" name="cameraInput" alt="Responsive image" capture style="position: absolute;
+                Upload Image<input type="file" accept="image/*" id="imgInp" name="cameraInput" alt="Responsive image" style="position: absolute;
     top: 0;
     right: 0;
     min-width: 100%;
@@ -44,7 +44,7 @@
     outline: none;
     background: white;
     cursor: inherit;
-    display: block;">
+    display: block;" capture>
               </span>
             </span>
             <input type="text" class="form-control" readonly>
@@ -114,7 +114,7 @@ $(document).ready( function() {
 		$("#img-upload").change(function(){
 		    readURL(this); 
 		}); 	
-	});  //end of my javascript(include or take it out if not needed)
+	});  
         var video = document.getElementById('video');
 
         // Get access to the camera!
