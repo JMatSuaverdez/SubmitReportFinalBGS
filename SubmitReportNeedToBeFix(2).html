@@ -90,7 +90,7 @@ $(document).ready( function() {
 		$('.btn-file :file').on('fileselect', function(event, label) {
 		    
 		    var input = $(this).parents('.input-group').find(':text'),
-		        log = label;
+		        log = label;//To enable the btn-file to select files from the devices
 		    
 		    if( input.length ) {
 		        input.val(log);
@@ -105,7 +105,7 @@ $(document).ready( function() {
 		        
 		        reader.onload = function (e) {
 		            $('#img-upload').attr('src', e.target.result);
-		        }
+		        }//To all img-upload on the btn-file
 		        
 		        reader.readAsDataURL(input.files[0]);
 		    }
@@ -113,8 +113,8 @@ $(document).ready( function() {
 
 		$("#imgInp").change(function(){
 		    readURL(this);
-		}); 	
-	});
+		});//To call function imgInp to work
+	});// end of my Javascript inlude or take out if needed
         var video = document.getElementById('video');
 
         // Get access to the camera!
