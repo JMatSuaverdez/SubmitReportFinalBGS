@@ -89,7 +89,7 @@ $(document).ready( function() {
 
 		$('.btn-file :file').on('fileselect', function(event, label) {
 		    
-		    var input = $(this).parents('.input-group').find(':text'),
+		    var input = $(this).parents('.input-group').find(':text'), //so the file name will show beside the 'btn-file'
 		        log = label; //for the 'fileselect' option to work for 'btn-file'
 		    
 		    if( input.length ) {
