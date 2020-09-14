@@ -84,18 +84,18 @@ $(document).ready( function() {
     	$(document).on('change', '.btn-file :file', function() {
 		var input = $(this),
 			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-		input.trigger('fileselect', [label]); //for the btn-file get access to different files
+		input.trigger('fileselect', [label]);
 		});
 
 		$('.btn-file :file').on('fileselect', function(event, label) {
 		    
 		    var input = $(this).parents('.input-group').find(':text'),
-		        log = label; //for the 'fileselect' option to work for 'btn-file'
+		        log = label;
 		    
 		    if( input.length ) {
 		        input.val(log);
 		    } else {
-		        if( log ) alert(log); 
+		        if( log ) alert(log);
 		    }
 	    
 		});
@@ -105,16 +105,16 @@ $(document).ready( function() {
 		        
 		        reader.onload = function (e) {
 		            $('#img-upload').attr('src', e.target.result);
-		        }//read image and upload image
+		        }
 		        
 		        reader.readAsDataURL(input.files[0]);
 		    }
 		}
 
-		$("#img-upload").change(function(){
-		    readURL(this); 
+		$("#imgInp").change(function(){
+		    readURL(this);
 		}); 	
-	});  
+	});
         var video = document.getElementById('video');
 
         // Get access to the camera!
