@@ -1,0 +1,149 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <title>SubmitReport</title>
+</head>
+
+<body>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="">Community User</a></li>
+    <li class="breadcrumb-item active">Submit Report</li>
+  </ol>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      Recent and Current Records of Community Users
+    </div>
+  </div>
+
+  <div id="SubmitReport" role="dialog">
+    <div class="col-md-6">
+      <div class="md-form mb-3">
+        <div class="form-group">
+          <h4>Submit Report</h4>
+          <img id='img-upload' style="border:single; margin-bottom:10px; height:450px; width:100%;" />
+          <div class="input-group">
+            <span class="input-group-btn">
+              <span class="btn btn-default btn-file" style=" position: relative; overflow: hidden;">
+                Upload Image<input type="file" accept="image/*" id="imgInp" name="cameraInput" alt="Responsive image" capture style="position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;">
+              </span>
+            </span>
+            <input type="text" class="form-control" readonly>
+          </div>
+        </div>
+      </div>
+      <div class="md-form mb-3">
+        <label id="DropDown">Environmental Concern</label>
+        <select id="myList">
+          <option value="1">Land Concerns</option>
+          <option value="2">Water Concerns</option>
+        </select>
+        <div class="md-form mb-3">
+          <div class="form-group">
+            <label for="FormControlTextarea1">Additional Concerns</label>
+            <textarea class="form-control rounded-0" id="add-cnrns" rows="5"></textarea>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <small>Powered by TerraTechPH</small>
+        <input type="submit" id="btnREQAddVolunteer" value="Submit" class="btn btn-primary btn-md btnREQAddVolunteer" />
+      </div>
+    </div>
+  </div>
+  </div>
+
+</body>
+
+</html>
+
+
+
+<script>
+$(document).ready( function() {
+    	$(document).on('change', '.btn-file :file', function() {
+		var input = $(this),
+			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger('fileselect', [label]); //to get access to the btn-file
+		});
+
+		$('.btn-file :file').on('fileselect', function(event, label) {
+		    
+		    var input = $(this).parents('.input-group').find(':text'),
+		        log = label; //to access different files in your desktop/mobile phone
+		    
+		    if( input.length ) {
+		        input.val(log);
+		    } else {
+		        if( log ) alert(log); 
+		    }
+	    
+		});
+		function readURL(input) {
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+		        
+		        reader.onload = function (e) {
+		            $('#img-upload').attr('src', e.target.result);
+		        }//read image and upload image
+		        
+		        reader.readAsDataURL(input.files[0]);
+		    }
+		}
+
+		$("#imgInp").change(function(){
+		    readURL(this); 
+		}); 	
+	});  
+        var video = document.getElementById('video');
+
+        // Get access to the camera!
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // Not adding `{ audio: true }` since we only want video now
+            navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+                //video.src = window.URL.createObjectURL(stream);
+                video.srcObject = stream;
+                video.play();
+            });
+        }
+
+        /* Legacy code below: getUserMedia
+        else if(navigator.getUserMedia) { // Standard
+            navigator.getUserMedia({ video: true }, function(stream) {
+                video.src = stream;
+                video.play();
+            }, errBack);
+        } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+            navigator.webkitGetUserMedia({ video: true }, function(stream){
+                video.src = window.webkitURL.createObjectURL(stream);
+                video.play();
+            }, errBack);
+        } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+            navigator.mozGetUserMedia({ video: true }, function(stream){
+                video.srcObject = stream;
+                video.play();
+            }, errBack);
+        }
+        */
+
+    </script>
